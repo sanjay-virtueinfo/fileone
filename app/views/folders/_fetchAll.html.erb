@@ -1,44 +1,78 @@
 <table class="table table-striped">
- <thead> 
-  <tr>
-    <th width="20%"><%= t("general.name") %></th>
-    <th width="20%"><%= t("general.type") %></th>
-    <th width="20%"><%= t("general.date_modified")%></th>
-    <th width="10%"><%= t("general.actions") %></th>    
-  </tr>
- </thead> 
-  
-  <tbody>
-    
-	    <% if session[:parent_folder_id] %>
-	    	<% if @o_folder.parent_folder.nil? %>
-	    		<tr><td colspan="4"><%= link_to "..", folders_path %></td></tr>
-	    	<% else %>
-	    		<tr><td colspan="4"><%= link_to "..", sub_folders_path(@o_folder.parent_folder.id) %></td></tr>
-	    	<% end %>	
-	    <% end %>
-	    
-      <% @o_all.each do |o_row| %>
-        <tr>
-          <td>
-          	<% if o_row.is_folder %>
-          		<%= link_to o_row.name, sub_folders_path(o_row.id) %>
-          	<% else %>
-          		<%= o_row.name %>
-          	<% end %>	
-          </td>
-          <td><%= o_row.file_content_type %></td>
-          <td><%= o_row.updated_at.to_s(:pretty) %></td>
-          <td> 
-			      <%= link_to t('.edit', :default => t("helpers.links.edit")),
-			                  edit_folder_path(o_row), :class => 'btn btn-mini' %>
-			      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-			                  folder_path(o_row),
-			                  :method => :delete,
-			                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-			                  :class => 'btn btn-mini btn-danger' %>
-          </td>
-        </tr>
-      <% end %>
-  </tbody>
+	<tr>
+		<td width="30%">
+			
+			<%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
+				<fieldset>
+					<legend></legend>
+
+    			<div class="control-group">
+    				<%= f.label :file_path, :class => 'control-label' %>
+    				<div class="controls"><%= f.file_field :file_path, :class => 'text_field' %></div>
+    			</div>
+    			
+    			<div class="control-group"><div class="controls"><% if @o_single.file_path? %><%= image_tag @o_single.file_path_url(:logo) %><% end %></div></div>
+    					 		    
+			    <%= f.hidden_field :folder_id, :value => (session[:parent_folder_id] ? session[:parent_folder_id] : nil) %>
+			    <%= f.hidden_field :user_id, :value => current_user.id %>
+			    
+
+			    <%= f.submit nil, :class => 'btn btn-primary' %>
+
+			    
+			  </fieldset>
+			<% end %>
+
+			
+			
+			
+		</td>
+		
+		<td width="70%">
+			<table class="table table-striped">	
+			 <thead> 
+			  <tr>
+			    <th width="20%"><%= t("general.name") %></th>
+			    <th width="10%"><%= t("general.type") %></th>
+			    <th width="20%"><%= t("general.date_modified")%></th>
+			    <th width="10%"><%= t("general.actions") %></th>    
+			  </tr>
+			 </thead> 
+			  
+			  <tbody>
+			    
+				    <% if session[:parent_folder_id] %>
+				    	<% if @o_folder.parent_folder.nil? %>
+				    		<tr><td colspan="4"><%= link_to "..", folders_path %></td></tr>
+				    	<% else %>
+				    		<tr><td colspan="4"><%= link_to "..", sub_folders_path(@o_folder.parent_folder.id) %></td></tr>
+				    	<% end %>	
+				    <% end %>
+				    
+			      <% @o_all.each do |o_row| %>
+			        <tr>
+			          <td>
+			          	<% if o_row.is_folder %>
+			          		<%= link_to o_row.name, sub_folders_path(o_row.id) %>
+			          	<% else %>
+			          		<%= o_row.name %>
+			          	<% end %>	
+			          </td>
+			          <td><%= o_row.file_content_type %></td>
+			          <td><%= o_row.updated_at.to_s(:pretty) %></td>
+			          <td> 
+						      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+						                  edit_folder_path(o_row), :class => 'btn btn-mini' %>
+						      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+						                  folder_path(o_row),
+						                  :method => :delete,
+						                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+						                  :class => 'btn btn-mini btn-danger' %>
+			          </td>
+			        </tr>
+			      <% end %>
+			  </tbody>
+			 </table> 
+		</td>
+	</tr>	  
 </table>

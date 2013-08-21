@@ -8,10 +8,12 @@ class FoldersController < ApplicationController
   def index
     session[:parent_folder_id] = nil
     @o_all = Folder.parent_folders
+    @o_single = Folder.new
   end
   
   def sub_folders
     session[:parent_folder_id] = params[:parent_folder_id] if params[:parent_folder_id]
+    @o_single = Folder.new
     if session[:parent_folder_id]
       @o_folder = Folder.find(params[:parent_folder_id])
       if @o_folder.parent_folder.nil?
@@ -43,9 +45,25 @@ class FoldersController < ApplicationController
   # POST /folders.json
   def create
     @o_single = Folder.new(folder_params)
+    
 
+     
     respond_to do |format|
+      
       if @o_single.save
+        if @o_single.file_path
+          #@o_single.file_content_type = @o_single.file_path.content_type
+          #@o_single.name = @o_single.file_path.original_file
+          @o_single.file_size = @o_single.file_path.size.to_f
+          arr_img = @o_single.file_path.to_s.split("/")
+          @o_single.file_name = @o_single.name = arr_img.last.to_s
+          arr_file_type = @o_single.file_name.to_s.split(".")
+          @o_single.file_content_type = arr_file_type.last.to_s
+          
+          @o_single.is_folder = false
+          @o_single.save
+        end
+        
         r_url = session[:parent_folder_id] ? sub_folders_url(session[:parent_folder_id]) : folders_url
         format.html { redirect_to r_url, notice: t("general.successfully_created") }
         format.json { render action: 'show', status: :created, location: @o_single }
