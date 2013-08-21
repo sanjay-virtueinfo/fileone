@@ -1,0 +1,39 @@
+<%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
+	<fieldset>
+		<legend></legend>
+   
+    <div class="control-group">
+      <%= f.label :name, :class => 'control-label' %><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.text_field :name, :class => 'text_field' %>
+       	<% if @o_single.errors[:name].any? %>
+        	<span class="text-error text-message"><%= @o_single.errors[:name].first %></span>
+      	<% end %>        
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :plan_id, :class => 'control-label' %><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.select :plan_id, options_for_select(get_plans, (@o_single.plan.id unless @o_single.plan.nil?))  %>
+       	<% if @o_single.errors[:plan_id].any? %>
+        	<span class="text-error text-message"><%= @o_single.errors[:plan_id].first %></span>
+      	<% end %>         
+      </div>
+    </div>     
+	 
+    <div class="control-group">
+      <%= f.label :is_active, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :is_active, :class => 'check_box' %>
+      </div>
+    </div>			 
+     
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', features_url, :class => 'btn' %>
+    </div>
+    
+  </fieldset>
+<% end %>
+

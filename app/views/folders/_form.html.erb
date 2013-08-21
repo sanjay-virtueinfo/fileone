@@ -1,0 +1,27 @@
+<%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
+	<fieldset>
+		<legend></legend>
+   
+    <div class="control-group">
+      <%= f.label :name, :class => 'control-label' %><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.text_field :name, :class => 'text_field' %>
+       	<% if @o_single.errors[:name].any? %>
+        	<span class="text-error text-message"><%= @o_single.errors[:name].first %></span>
+      	<% end %>        
+      </div>
+    </div>
+    
+    <%= f.hidden_field :file_content_type, :value => "Folder" %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    
+    <%= f.hidden_field :folder_id, :value => (session[:parent_folder_id] ? session[:parent_folder_id] : nil) %>
+    
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', folders_url, :class => 'btn' %>
+    </div>
+    
+  </fieldset>
+<% end %>
+

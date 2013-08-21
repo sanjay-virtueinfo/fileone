@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FileOne</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%-
+      current_controller_name = controller.controller_name
+      current_action = controller.action_name
+      admin_contollers_arr = %w(plans features user_plans static_pages contacts)
+  %>
+	<%= render 'layouts/header' %>
+	<div class="container">
+	  <% if flash[:notice] %>
+	    <div class="alert-success" id="notice"><%= flash[:notice] %></div>
+	    <% flash[:notice] = nil %>
+	  <% end %>				
+	  <div class="row">
+	  	
+				<% if admin_contollers_arr.include?(current_controller_name) and is_admin? %>	
+					<div class="span2">
+						<ul class="nav nav-pills nav-stacked">
+							<li class="<%= 'active' if current_controller_name == 'plans' %>"><%= link_to t("general.plans"), plans_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'features' %>"><%= link_to t("general.features"), features_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'user_plans' %>"><%= link_to t("general.user_plans"), user_plans_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'static_pages' %>"><%= link_to t("general.static_pages"), static_pages_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'contacts' %>"><%= link_to t("general.contacts"), contacts_path %></li>
+						</ul>  
+					</div>  
+					<div class="span10">
+						<%= yield %>
+					</div>					
+				<% else %>	
+					<div class="span12">
+						<%= yield %>
+					</div>				
+				<% end %>	  	
+
+		</div>
+	</div>
+	<footer style="text-align: center;">
+		<div class="container">
+			<%= render 'layouts/footer' %>
+		</div>
+	</footer>	
+</body>
+</html>
+

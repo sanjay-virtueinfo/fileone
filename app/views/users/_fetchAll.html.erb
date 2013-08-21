@@ -1,0 +1,42 @@
+<table class="table table-striped">
+ <thead> 
+  <tr>
+    <th width="15%"><%= sortable "first_name", t("general.first_name") %></th>
+    <th width="15%"><%= sortable "last_name", t("general.last_name") %></th>
+    <th width="20%"><%= sortable "email", t("general.email") %></th>
+    <th width="15%"><%= t("general.role") %></th>
+    <th width="15%"><%= sortable "created_at", t("general.created_at")%></th>
+    <th width="10%"><%= sortable "is_active", t("general.is_active") %></th>
+    <th width="10%"><%= t("general.actions") %></th>
+  </tr>
+ </thead> 
+  
+  <tbody>
+    <% if @o_all.size > 0 %>
+      <% @o_all.each do |o_row| %>
+        <tr>
+          <td><%= o_row.first_name %></td>
+          <td><%= o_row.last_name %></td>
+          <td><%= o_row.email %></td>
+          <td><%= o_row.role.role_type %></td>
+          <td><%= o_row.created_at.to_s(:pretty) %></td>
+          <td><%= o_row.is_active ? image_tag("Yes.gif") : image_tag("No.gif") %></td>
+          <td> 
+			      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+			                  edit_user_path(o_row), :class => 'btn btn-mini' %>
+			      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+			                  user_path(o_row),
+			                  :method => :delete,
+			                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+			                  :class => 'btn btn-mini btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr><th colspan="6"><%= t("general.record_not_found") %></th></tr>
+    <% end %>      
+  </tbody>
+</table>
+<div class="fRight">
+	<%= will_paginate @o_all %>
+</div>	

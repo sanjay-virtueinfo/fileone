@@ -1,0 +1,41 @@
+<%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
+	<fieldset>
+		<legend></legend>
+   
+    <div class="control-group">
+      <%= f.label :name, :class => 'control-label' %><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.text_field :name, :class => 'text_field' %>
+       	<% if @o_single.errors[:name].any? %>
+        	<span class="text-error text-message"><%= @o_single.errors[:name].first %></span>
+      	<% end %>        
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :email, :class => 'control-label' %><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.text_field :email, :class => 'text_field' %>
+       	<% if @o_single.errors[:email].any? %>
+        	<span class="text-error text-message"><%= @o_single.errors[:email].first %></span>
+      	<% end %>                
+      </div>
+    </div>
+    	
+    <div class="control-group"><%= f.label :message, :class => 'control-label' %><div class="controls"><%= f.text_area :message, :class => 'text_field' %></div></div>
+		 
+    <div class="control-group">
+      <%= f.label :is_contact_us, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :is_contact_us, :class => 'check_box' %>
+      </div>
+    </div>			 
+     
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', contacts_url, :class => 'btn' %>
+    </div>
+    
+  </fieldset>
+<% end %>
+

@@ -1,0 +1,65 @@
+<div class="page-header">
+  <h4><%= t("general.sign_up") %></h4>
+</div>
+
+<%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
+<div class="loginfom">
+	<fieldset>
+		<legend></legend>
+	
+    <div class="control-group">
+      <%= f.label :first_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :first_name, :class => 'text_field' %>
+      </div>
+    </div>		
+		
+    <div class="control-group">
+      <%= f.label :last_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :last_name, :class => 'text_field' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :email, :class => 'control-label' %><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.text_field :email, :class => 'text_field' %>
+       	<% if @o_single.errors[:email].any? %>
+        	<span class="text-error text-message"><%= @o_single.errors[:email].first %></span>
+      	<% end %>        
+      </div>
+    </div>
+    
+   
+		<% if @o_single.new_record? %>
+	    <div class="control-group">
+	      <%= f.label :password, :class => 'control-label' %><span class="redStart">*</span>
+	      <div class="controls">
+	        <%= f.password_field :password, :class => 'text_field' %>
+	       	<% if @o_single.errors[:password].any? %>
+	        	<span class="text-error text-message"><%= @o_single.errors[:password].first %></span>
+	      	<% end %>        	        
+	      </div>
+	    </div>	
+	    
+	    <div class="control-group">
+	      <%= f.label :password_confirmation, :class => 'control-label' %><span class="redStart">*</span>
+	      <div class="controls">
+	        <%= f.password_field :password_confirmation, :class => 'text_field' %>
+		     	<% if @o_single.errors[:password_confirmation].any? %>
+		      	<span class="text-error text-message"><%= @o_single.errors[:password_confirmation].first %></span>
+		    	<% end %>        	        
+	      </div>
+	    </div>		    	
+		<% end %> 
+
+   <div class="form-actions">
+      <%= f.submit 'Sign Up', :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', root_url, :class => 'btn' %>
+   </div>
+ </div>  
+</fieldset>
+<% end %>
+
+

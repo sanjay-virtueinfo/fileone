@@ -1,0 +1,39 @@
+<%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
+	<fieldset>
+		<legend></legend>
+   
+    <div class="control-group">
+      <label class='control-label'><%= t("general.usage_gb") %></label><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.text_field :usage, :class => 'text_field' %>
+       	<% if @o_single.errors[:usage].any? %>
+        	<span class="text-error text-message"><%= @o_single.errors[:usage].first %></span>
+      	<% end %>        
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class='control-label'><%= t("general.price_dollar") %></label><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.text_field :price, :class => 'text_field' %>
+       	<% if @o_single.errors[:price].any? %>
+        	<span class="text-error text-message"><%= @o_single.errors[:price].first %></span>
+      	<% end %>        
+      </div>
+    </div>   
+	 
+    <div class="control-group">
+      <%= f.label :is_active, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :is_active, :class => 'check_box' %>
+      </div>
+    </div>			 
+     
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', plans_url, :class => 'btn' %>
+    </div>
+    
+  </fieldset>
+<% end %>
+

@@ -1,0 +1,104 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Hello world"
+  has already been taken: "Has already been taken"
+  doesn't match confirmation: "Doesn't match confirmation"
+  is required: "Is required."
+  is too short (minimum is 3 characters): "Minimum is 3 characters required."
+  is too short (minimum is 4 characters): "Minimum is 4 characters required."
+  required: "is required."  
+  general:
+    email: "Email"
+    password_confirmation: "Password confirm"
+    sign_up: "Sign Up"
+    username: "Username"
+    click_here_to_recover_your_account: "Forgot Password ?"
+    credentials_not_valid: "Credentials you entered are not valid.Please check the spelling for both email and password"
+    login_successful: "Successful Logged In."
+    logout_successful: "Successfully Logout."
+    successfully_created: "Successfully created."
+    successfully_updated: "Successfully updated."
+    successfully_destroyed: "Successfully destroyed."
+    all_records: "Records"
+    new: "New"
+    actions: "Actions"
+    edit: "Edit"
+    destroy: "Destroy"
+    are_you_sure_to_delete: "Are you sure?"
+    show: "Show"
+    save: "Save"
+    back: "Back"
+    next: "Next"
+    login: "Login"
+    is_active: "Active"
+    users: "Users"
+    edit_user: "Edit User"
+    close: "Close"
+    edit_profile: "Edit Profile"
+    username_required: "Email Required"
+    password_requied: "Password Requied"
+    login_successfully: "Login Successfully"
+    You_did_not_provide_any_details_for_authentication: "You did not provide any details for authentication"
+    Username_is_not_valid: "Username is not valid"
+    Password_cannot_be_blank: "Password can not be blank"
+    Password_is_not_valid: "Password is not valid"
+    Username_cannot_be_blank: "Email cannot be blank"
+    credentials_not_valid: "Credentials you entered are not valid.Please check the spelling for both email and password"
+    successfully_registered: "Successfully Registered"
+    profile_updated_successfully: "Profile Updated Successfully"
+    email_required: "Email Required"
+    password_has_been_sent_to_your_email_address: "Password has been sent to your email address"
+    no_user_exists_for_provided_email_address: "No user exists for provided email address"
+    password_required: "Password Required"
+    password_does_not_match: "Password does not match"
+    password_successfully_updated: "Password successfully updated"
+    password_does_not_updated: "Password does not updated"
+    logout: "Logout"
+    home: "Home"
+    change_password: "Change Password"
+    created_at: "Date"
+    copyright_all_rights_reserved_html: "Copyright &copy; 2013 FileOne. All rights reserved."
+    welcome: "Welcome"
+    contact: "Contact"
+    username: "Username"
+    email: "Email"
+    first_name: "First name"
+    last_name: "Last name"
+    address: "Address"
+    city: "City"
+    zipcode: "Zipcode"
+    image: "Image"
+    user_role: "User Role"
+    select_role: "Select Role"
+    user: "User"
+    password_confirmation: "Password confirmation"
+    password: "Password"
+    add: "Add"
+    state: "State"
+    web_team: "FileOne"
+    your_registration_has_been_done_successfully: "Your are registered with FileOne. Kindly follow below credential to login."
+    dear: "Dear"
+    your_new_password_is: "Your New Password Is"
+    your_password_has_been_reset_successfully: "Your Password Has Been Reset Successfully"
+    usage_gb: "Usage (GB)"
+    price_dollar: "Price ($)"
