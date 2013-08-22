@@ -24,6 +24,13 @@ class UserSessionsController < ApplicationController
       if @user_session.save
 				session[:user_id] = current_user.id
 				session[:user_role] = current_user.role.role_type
+				
+				if session[:folder_temp_id]
+				  folder = Folder.find(session[:folder_temp_id])
+				  folder.user_id = current_user.id
+				  folder.save
+				end
+				
 				format.html { redirect_to(dashboard_path, :notice => t("general.login_successful")) }
 				format.xml { render :xml => @user_session, :status => :created, :location => @user_session }
       else
@@ -42,10 +49,26 @@ class UserSessionsController < ApplicationController
           @o_single.role = Role.find_by(:role_type => USER)
           opts = {:username => @o_single.name}
           UserMailer.registration_confirmation(@o_single.email, opts).deliver
-          format.html { redirect_to users_url, notice: t("general.successfully_created") }
+          
+         
+          @user_session = UserSession.new
+          @user_session.email = @o_single.email
+          @user_session.password = params[:user][:password]
+          
+          if @user_session.save
+            session[:user_id] = current_user.id
+            session[:user_role] = current_user.role.role_type
+            
+            if session[:folder_temp_id]
+              folder = Folder.find(session[:folder_temp_id])
+              folder.user_id = current_user.id
+              folder.save
+            end
+          end  
+          format.html { redirect_to dashboard_url, notice: t("general.successfully_register") }
           format.json { render action: 'show', status: :created, location: @o_single }
         else
-          format.html { render action: 'new' }
+          format.html { render action: 'signup' }
           format.json { render json: @o_single.errors, status: :unprocessable_entity }
         end
       end

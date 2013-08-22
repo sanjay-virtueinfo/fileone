@@ -102,3 +102,6 @@ en:
     your_password_has_been_reset_successfully: "Your Password Has Been Reset Successfully"
     usage_gb: "Usage (GB)"
     price_dollar: "Price ($)"
+    how_you_would_like_to_share: "How you would like to share ?"
+    successfully_saved_on_cloud: "Successfully saved on cloud"
+    file_not_saved: "File not saved"

@@ -7,13 +7,16 @@ class FoldersController < ApplicationController
   # GET /folders.json
   def index
     session[:parent_folder_id] = nil
-    @o_all = Folder.parent_folders
+    @o_all = current_user.folders.parent_folders
     @o_single = Folder.new
+    @folder = session[:folder_temp_id] ? (Folder.find(session[:folder_temp_id])) : nil     
   end
   
   def sub_folders
     session[:parent_folder_id] = params[:parent_folder_id] if params[:parent_folder_id]
+    @folder = session[:folder_temp_id] ? (Folder.find(session[:folder_temp_id])) : nil
     @o_single = Folder.new
+    
     if session[:parent_folder_id]
       @o_folder = Folder.find(params[:parent_folder_id])
       if @o_folder.parent_folder.nil?
@@ -22,8 +25,9 @@ class FoldersController < ApplicationController
         @o_all = @o_folder.folders
       end  
     else
-      @o_all = Folder.parent_folders
+      @o_all = current_user.folders.parent_folders
     end
+    
     render action: 'index'
   end
   
@@ -44,24 +48,17 @@ class FoldersController < ApplicationController
   # POST /folders
   # POST /folders.json
   def create
-    @o_single = Folder.new(folder_params)
-    
-
-     
+    @o_single = Folder.new(folder_params)     
     respond_to do |format|
-      
       if @o_single.save
-        if @o_single.file_path
-          #@o_single.file_content_type = @o_single.file_path.content_type
-          #@o_single.name = @o_single.file_path.original_file
-          @o_single.file_size = @o_single.file_path.size.to_f
-          arr_img = @o_single.file_path.to_s.split("/")
-          @o_single.file_name = @o_single.name = arr_img.last.to_s
-          arr_file_type = @o_single.file_name.to_s.split(".")
-          @o_single.file_content_type = arr_file_type.last.to_s
-          
+        
+        if params[:folder] and params[:folder][:file_path]
+          @o_single.file_size = @o_single.file_path.size.to_f          
+          @o_single.file_content_type = params[:folder][:file_path].content_type
+          @o_single.name = @o_single.file_path.filename
           @o_single.is_folder = false
           @o_single.save
+          session[:folder_temp_id] = @o_single.id 
         end
         
         r_url = session[:parent_folder_id] ? sub_folders_url(session[:parent_folder_id]) : folders_url
@@ -112,7 +109,7 @@ class FoldersController < ApplicationController
     end
     
     def get_records(search, page)
-      folder_query = Folder.scoped
+      folder_query = current_user.folders.scoped
       folder_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end    
     

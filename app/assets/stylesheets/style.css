@@ -1,20 +1,53 @@
 @charset "utf-8";
 /* CSS Document */
 
+
+@font-face {
+    font-family: 'cleanvertising_light';
+    src: url('fonts/cleanvertising-light-webfont.eot');
+    src: url('fonts/cleanvertising-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/cleanvertising-light-webfont.woff') format('woff'),
+         url('fonts/cleanvertising-light-webfont.ttf') format('truetype'),
+         url('fonts/cleanvertising-light-webfont.svg#cleanvertising_light') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+.clearBoth { clear:both;}
+.floatLeft {float:left;}
+.floatRight {float:right;}
+img { border:0; outline:0;}
+.marginRight {margin-right:10%; }
+.width50 { width:50%!important; }
+
+/*.container { margin:20px auto; width:1005px;  }*/
+.middlePart { padding:30px 0; }
+.middlePart h2 { margin:0; padding:0 0 5px 0; font-family:'cleanvertising_light'; font-size:30px; font-weight:normal; color:#0cae81;}
+
+.leftBlock { width:40%; float:left; }
+.browseBtn { margin-bottom:35px; background:url(../images/borwsebg.png) no-repeat; cursor:pointer; width: 386px; height:38px; border: none;}
+.socialBlock { margin:0;}
+.socialBlockIcons { margin:0; width:295px; float:left; }
+.socialBlockIcons h3 { margin:0; padding:0 0 10px 0;  color:#0cae81; font-size:18px; font-weight: normal;}
+.socialBlockCloud { width:100px; float:left; }
+
+.rightBlock { width:60%; float:left; }
+.profielView { padding-top:35px; font-size:12px; color:#4f4f4f;}
+.profielView table tr td span { color:#0cae81; }
+.profielView table tr td.darkBorder { border-bottom:#c0eade solid 1px; }
+.profielView table tr td { border-bottom:#ddf4ed solid 1px; padding:6px 0 10px 0;}
+.iconImg { margin:0 10px -7px 0 }
+.titleIconImg { margin:0 0 -5px 10px; }
+
+
+
+
 .redStart {color: red; float: left; margin-left: 2px;}
-
 .redStartSelect {color: red; float: left;}
-
 .footerFront p {text-align:center !important;}
-
 .searchRight { float: right; font-size: 20px; margin: -50px 30px 0px 0px; }
-
 .fRight { float: right; font-size: 16px; }
-
 .text-message { float: left; margin: -25px 0 0 275px; font-weight: bold;}
-
 .spinner {float: right; margin: -50px 385px 0 0;}
-
 .mar20{ margin: 0 20px 0 5px;}
-
 .loginfom {background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #CECECD; border-radius: 10px 10px 10px 10px; box-shadow: 0 0 3px 3px rgba(206, 206, 205, 0.5); margin: 10px auto; padding: 20px; width: 600px; }

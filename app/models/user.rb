@@ -19,8 +19,9 @@ class User < ActiveRecord::Base
 	has_one :user_role, :dependent => :destroy
 	has_one :role, :through => :user_role
 	has_many :parent_folders, class_name: "Folder", foreign_key: :folder_id, conditions: {is_folder: true}
-	has_many :shares
-	has_many :plans
+	has_many :shares, :dependent => :destroy
+	has_many :plans, :dependent => :destroy
+	has_many :folders, :dependent => :destroy
 	
   scope :active, -> {where(:is_active => true)}
   scope :all_users, joins(:role).where(:roles => { :role_type => "User" })

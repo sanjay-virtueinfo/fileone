@@ -35,12 +35,16 @@
 					</div>					
 				<% else %>	
 					<div class="span12">
-						<%= yield %>
-					</div>				
+						<div class="middlePart">
+       	  		<%= yield %>
+       	  	</div>
+					</div>	
+					<div class="clearBoth"></div>			
 				<% end %>	  	
 
 		</div>
 	</div>
+	<hr />
 	<footer style="text-align: center;">
 		<div class="container">
 			<%= render 'layouts/footer' %>

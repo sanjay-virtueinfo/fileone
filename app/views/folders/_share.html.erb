@@ -1,0 +1,104 @@
+<div class="fb-root" id="fb-root"></div>
+	<table class="table table-condensed" width="100%">
+		
+		
+		<tr>
+			<td width="100%" colspan="3">
+				<!-- facebook -->
+				
+				<a id="shareonfacebook"> <%= image_tag "facebook.jpeg", :width => "60px" %></a>
+			  <span id="spinner" style="display: none;">
+			    <%= image_tag "loading.gif" %>
+			  </span>  		
+			</td>
+		</tr>	
+		
+		<tr>
+			<td width="100%" colspan="3">
+				<!-- twitter -->
+					
+					<a onclick="Share.twitter('http://<%= session[:user_url] %>','')"><%= image_tag "twitter.png", :width => "60px" %></a>
+			</td>	
+		</tr>
+
+	</table> 
+	
+
+
+<script type="text/javascript">
+
+	$(document).ready(function () {
+		Share = {
+			facebook: function(purl, ptitle, pimg, text) {
+				url = 'http://www.facebook.com/sharer.php?s=100';
+				url += '&p[title]=' + encodeURIComponent(ptitle);
+				url += '&p[summary]=' + encodeURIComponent(text);
+				url += '&p[url]=' + $('#uf').attr('src');
+				url += '&p[images][0]=' + encodeURIComponent(pimg);
+				Share.popup(url);
+			},
+			
+			
+			twitter: function(purl, ptitle) {
+				url = 'http://twitter.com/share?';
+				url += 'text=' + encodeURIComponent(ptitle);
+				url += '&url=' + encodeURIComponent(purl);
+				url += '&counturl=' + encodeURIComponent(purl);
+				Share.popup(url);
+			},
+			
+			google: function(purl) {
+				url = 'https://plus.google.com/share?&hl=en';
+				url += '&url=' + encodeURIComponent(purl);
+				Share.popup(url);
+			},	
+			
+			
+			popup: function(url) {
+				window.open(url,'','toolbar=0,status=0,width=626, height=436');
+			}
+		};
+	
+		FB.init({
+			appId : '<%= FACEBOOK_CONSUMER_KEY %>'
+		});
+	});
+    $(document).ready(function () {
+      $('#shareonfacebook').click(function (e) {
+          e.preventDefault();
+          FB.ui(
+              {
+                  method: 'feed',
+									name: '',
+									link: '<%= session[:user_url] %>',
+									picture: '',
+									description: '',
+                  message: ''
+              }, function(response) {
+								    if (response.post_id) {
+								      $.ajax({
+								        type: 'GET',
+								        dataType: 'json',
+								        data: {"access_token": "<%= session[:token] %>"},
+								        url: "https://graph.facebook.com/" + response.post_id,
+								        success: function(responseData) {
+								        	$("#spinner").show();
+											      $.ajax({
+											        type: 'GET',
+											        dataType: 'json',
+											        data: {"post_id": response.post_id, "content": responseData.message},
+											        url: "/facebook/add_post_id",
+											        success: function(responseData) {
+											        	alert("Content has been shared successfully on facebook");
+											        	$("#spinner").hide();
+											        }
+											     });
+								        	//alert(JSON.stringify(responseData, null, "\t"));
+								        }
+								     });
+								    }
+								});
+      });
+            
+  	});
+</script>

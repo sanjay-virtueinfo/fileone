@@ -1,4 +1,4 @@
-<%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @o_single, :html => { :class => 'save_form_new' } do |f| %>
 	<fieldset>
 		<legend></legend>
    
@@ -18,8 +18,7 @@
     <%= f.hidden_field :folder_id, :value => (session[:parent_folder_id] ? session[:parent_folder_id] : nil) %>
     
     <div class="form-actions">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', folders_url, :class => 'btn' %>
+      <%= link_to 'Create Folder', "#", :id => "save_new"%>
     </div>
     
   </fieldset>

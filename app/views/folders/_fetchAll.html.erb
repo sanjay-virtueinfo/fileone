@@ -1,78 +1,108 @@
-<table class="table table-striped">
-	<tr>
-		<td width="30%">
+<div class="leftBlock marginRight">
+	<%= form_for @o_single, :html => { :class => 'attachmentsUpload' } do |f| %>
+		<h2>Locate File</h2>
+	    <%= f.hidden_field :folder_id, :value => (session[:parent_folder_id] ? session[:parent_folder_id] : nil) %>
+	    <%= f.hidden_field :user_id, :value => current_user.id %>
+	    <%= f.file_field :file_path, :class => 'text_field' %>
 			
-			<%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
-				<fieldset>
-					<legend></legend>
-
-    			<div class="control-group">
-    				<%= f.label :file_path, :class => 'control-label' %>
-    				<div class="controls"><%= f.file_field :file_path, :class => 'text_field' %></div>
-    			</div>
-    			
-    			<div class="control-group"><div class="controls"><% if @o_single.file_path? %><%= image_tag @o_single.file_path_url(:logo) %><% end %></div></div>
-    					 		    
-			    <%= f.hidden_field :folder_id, :value => (session[:parent_folder_id] ? session[:parent_folder_id] : nil) %>
-			    <%= f.hidden_field :user_id, :value => current_user.id %>
-			    
-
-			    <%= f.submit nil, :class => 'btn btn-primary' %>
-
-			    
-			  </fieldset>
-			<% end %>
-
+			<div class="clearBoth">&nbsp;</div>
 			
-			
-			
-		</td>
+	    <div class="socialBlockCloud"><%= link_to image_tag("cloud.png", :width => "91", :height => "91"), "#", :id => "save_on_cloud"%></div>
+	<% end %>
+	
+	<div class="clearBoth">&nbsp;</div>
+	    
+	<% if @folder %>
+		<% if @folder.file_content_type == 'image' %>
+			<%= image_tag @folder.file_path_url(:logo) %><br />
+		<% else %>
+			<%= @folder.name %><br />
+		<% end %>
+	<% end %>	
+	
 		
-		<td width="70%">
-			<table class="table table-striped">	
-			 <thead> 
-			  <tr>
-			    <th width="20%"><%= t("general.name") %></th>
-			    <th width="10%"><%= t("general.type") %></th>
-			    <th width="20%"><%= t("general.date_modified")%></th>
-			    <th width="10%"><%= t("general.actions") %></th>    
-			  </tr>
-			 </thead> 
-			  
-			  <tbody>
-			    
-				    <% if session[:parent_folder_id] %>
-				    	<% if @o_folder.parent_folder.nil? %>
-				    		<tr><td colspan="4"><%= link_to "..", folders_path %></td></tr>
-				    	<% else %>
-				    		<tr><td colspan="4"><%= link_to "..", sub_folders_path(@o_folder.parent_folder.id) %></td></tr>
-				    	<% end %>	
-				    <% end %>
-				    
-			      <% @o_all.each do |o_row| %>
-			        <tr>
-			          <td>
-			          	<% if o_row.is_folder %>
-			          		<%= link_to o_row.name, sub_folders_path(o_row.id) %>
-			          	<% else %>
-			          		<%= o_row.name %>
-			          	<% end %>	
-			          </td>
-			          <td><%= o_row.file_content_type %></td>
-			          <td><%= o_row.updated_at.to_s(:pretty) %></td>
-			          <td> 
-						      <%= link_to t('.edit', :default => t("helpers.links.edit")),
-						                  edit_folder_path(o_row), :class => 'btn btn-mini' %>
-						      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-						                  folder_path(o_row),
-						                  :method => :delete,
-						                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-						                  :class => 'btn btn-mini btn-danger' %>
-			          </td>
-			        </tr>
-			      <% end %>
-			  </tbody>
-			 </table> 
-		</td>
-	</tr>	  
-</table>
+  <div class="socialBlock">
+  	<div class="socialBlockIcons">
+  	  <h3>How would you like to share?</h3>
+  	  <a href="#"><img src="images/msg_icon.png" width="37" height="37" alt="" class="marginRight30" /></a>
+        <a href="#"><img src="images/twitter_icon.png" width="37" height="37" alt="" class="marginRight30" /></a>
+        <a href="#"><img src="images/pintrest_icon.png" width="37" height="37" alt="" class="marginRight30" /></a>
+        <a href="#"><img src="images/facebook_icon.png" width="37" height="37" alt=""  /></a>
+  	</div>
+  	<div class="clearBoth"></div>
+  </div>		
+</div>
+
+
+<div class="rightBlock width50">
+	<div class="profielView">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="45%" class="darkBorder"><span>Name<%= link_to image_tag("add_folder.png", :width => "22"), "#", :class => 'titleIconImg', :id => "folder_new" %></span></td>
+      <td width="20%" class="darkBorder"><span><%= t("general.type") %></span></td>
+      <td width="20%" class="darkBorder"><span><%= t("general.date_modified")%></span></td>
+      <td width="15%" class="darkBorder"><span><%= t("general.actions")%></span></td>
+    </tr>
+    <% if session[:parent_folder_id] %>
+    	<% if @o_folder.parent_folder.nil? %>
+    		<tr><td><%= link_to "..", folders_path %></td></tr>
+    	<% else %>
+    		<tr><td><%= link_to "..", sub_folders_path(@o_folder.parent_folder.id) %></td></tr>
+    	<% end %>	
+    <% end %>
+    
+    <% @o_all.each do |o_row| %>
+      <tr>
+        <td>
+        	<% if o_row.is_folder %>
+        		<%= link_to o_row.name, sub_folders_path(o_row.id) %>
+        	<% else %>
+        		<%= o_row.name %>
+        	<% end %>	
+        </td>
+        <td><%= o_row.file_content_type %></td>
+        <td><%= o_row.updated_at.to_s(:pretty) %></td>
+        <td>
+		      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+		                  folder_path(o_row),
+		                  :method => :delete,
+		                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+		                  :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  </div>
+</div>	
+	
+<div id="myModal" class="reveal-modal">
+	<%= render 'form' %>
+</div>
+
+<script>
+	$(function() {
+		
+		$("#folder_new").click(function () {
+			$('#myModal').reveal();
+		});			
+		
+		$("#save_on_cloud").click(function () {
+			if ($("#folder_file_path").val() == "") {
+				alert("Please choose file");
+				return;
+			}else {
+				$('.attachmentsUpload').submit();
+			}
+		});
+		
+		$("#save_new").click(function () {
+			if ($("#folder_name").val() == "") {
+				alert("Please enter name");
+			}else {
+				$('.save_form_new').submit();
+			}
+		});		
+		
+	});	
+</script>
+

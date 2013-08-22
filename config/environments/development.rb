@@ -26,6 +26,8 @@ Fileone::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  
+  config.gem "carrierwave"
 
   BASE_URL = "http://localhost:3006"
   BASE_URL_DOMAIN = "localhost:3006"

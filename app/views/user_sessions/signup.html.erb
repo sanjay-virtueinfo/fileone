@@ -2,7 +2,7 @@
   <h4><%= t("general.sign_up") %></h4>
 </div>
 
-<%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @o_single, :url => signup_path, :html => { :class => 'form-horizontal' } do |f| %>
 <div class="loginfom">
 	<fieldset>
 		<legend></legend>

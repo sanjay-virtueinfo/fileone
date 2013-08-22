@@ -54,9 +54,11 @@ gem 'webget_ruby_secure_random'
 gem "will_paginate"
 
 #image upload
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem "carrierwave"
 gem "rmagick"
 gem "mini_magick"
+gem "fog"
 
 #mail sender
 gem "mail"
@@ -77,6 +79,8 @@ gem 'omniauth-twitter'
 gem 'facebook_share'
 gem 'twitter'
 gem 'fb_graph'
+
+#gem "jquery-fileupload-rails"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

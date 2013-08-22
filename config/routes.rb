@@ -13,9 +13,9 @@ Fileone::Application.routes.draw do
   
   get 'logout' => 'user_sessions#destroy', :as => :logout
   get 'login' => 'user_sessions#new', :as => :login
-  get 'signup' => 'user_sessions#signup', :as => :signup
+  match 'signup' => 'user_sessions#signup', :as => :signup, via: [:get, :post, :patch]
   
-  get 'dashboard' => 'fronts#dashboard', :as => :dashboard
+  match 'dashboard' => 'fronts#dashboard', :as => :dashboard, via: [:get, :post, :patch]
   get '/other/:page_id' => 'fronts#other', :as => :other
   
   match '/forgot_password' => 'fronts#forgot_password', :as => :forgot_password, via: [:get, :post]

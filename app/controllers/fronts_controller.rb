@@ -2,13 +2,34 @@ class FrontsController < ApplicationController
 	require 'builder'
   before_filter :require_user, :only => [:change_password]
   before_filter :set_header_menu_active
+  skip_before_filter :verify_authenticity_token, :only => [:dashboard]
   
   #dashboard
   def dashboard
-  	if current_user
-      @user = User.find(current_user.id)
-  	end	
-  end
+    redirect_to folders_url if current_user
+    
+    @o_single = Folder.new
+    @user_session = UserSession.new
+    @o_user = User.new
+    @folder = session[:folder_temp_id] ? (Folder.find(session[:folder_temp_id])) : nil
+    
+  	if request.post?
+  	  @o_single = Folder.new(folder_params)
+      if params[:folder] and params[:folder][:file_path] and @o_single.save
+        if @o_single.file_path
+          @o_single.file_size = @o_single.file_path.size.to_f          
+          @o_single.file_content_type = params[:folder][:file_path].content_type
+          @o_single.name = @o_single.file_path.filename
+          @o_single.is_folder = false
+          @o_single.save
+          flash[:notice] = t("general.successfully_saved_on_cloud")
+          session[:folder_temp_id] = @o_single.id
+        else
+          flash[:error] = t("general.file_not_saved")
+        end
+      end
+    end
+  end  
   
 	#forgot password
   def forgot_password
@@ -70,5 +91,9 @@ class FrontsController < ApplicationController
   def user_params
     params.require(:user).permit!
   end
+  
+  def folder_params
+    params.require(:folder).permit!
+  end  
   
 end
