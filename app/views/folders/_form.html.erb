@@ -1,26 +1,25 @@
-<%= form_for @o_single, :html => { :class => 'save_form_new' } do |f| %>
-	<fieldset>
-		<legend></legend>
-   
-    <div class="control-group">
-      <%= f.label :name, :class => 'control-label' %><span class="redStart">*</span>
-      <div class="controls">
-        <%= f.text_field :name, :class => 'text_field' %>
-       	<% if @o_single.errors[:name].any? %>
-        	<span class="text-error text-message"><%= @o_single.errors[:name].first %></span>
-      	<% end %>        
-      </div>
+<div class="popupBox">
+	<h2>Create Folder</h2>
+	<%= form_for @o_single, :html => { :class => 'save_form_new' } do |f| %>
+  	<div class="inputLabel">
+	    <label>Name</label>
+	    <%= f.text_field :name, :class => 'text_field' %>
+		  <%= f.hidden_field :file_content_type, :value => "Folder" %>
+		  <%= f.hidden_field :user_id, :value => current_user.id %>
+		  
+		  <%= f.hidden_field :folder_id, :value => (session[:parent_folder_id] ? session[:parent_folder_id] : nil) %>	    
+	    <div class="clearBoth"></div>
     </div>
-    
-    <%= f.hidden_field :file_content_type, :value => "Folder" %>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    
-    <%= f.hidden_field :folder_id, :value => (session[:parent_folder_id] ? session[:parent_folder_id] : nil) %>
-    
-    <div class="form-actions">
-      <%= link_to 'Create Folder', "#", :id => "save_new"%>
+
+    <div class="inputLabel">
+      <label>&nbsp;</label>
+      <%= link_to 'Create Folder', "#", :id => "save_new" %>
+      <div class="clearBoth"></div>
     </div>
-    
-  </fieldset>
-<% end %>
+    <div class="clearBoth"></div>
+  <% end %>  
+</div>
+<div class="clearBoth"></div>
+
+
 

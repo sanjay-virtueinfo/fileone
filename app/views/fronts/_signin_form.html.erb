@@ -1,51 +1,38 @@
-
-	<div class="">
-		<h6><%= t("general.sign_in") %></h6>
-	  <fieldset>
-	  	<legend></legend>
-				<%= form_for @user_session, :html => { :class => 'form-horizontal' } do |f| %>
-			    <div class="control-group">
-			      <%= f.label :email, :class => 'control-label' %>
-			      <div class="controls">
-			        <%= f.text_field :email, :class => 'text_field' %>
-			      </div>
-			    </div>
-			 
-			    <div class="control-group">
-			      <%= f.label :password, :class => 'control-label' %><span class="redStart">*</span>
-			      <div class="controls">
-			        <%= f.password_field :password, :class => 'text_field' %>
-			      </div>
-			    </div> 
-			 		<%= f.submit "Sign In", :class => 'btn btn-primary' %>   
-				<% end %>
-				<div class="clearb">&nbsp;</div>
-				<h6><%= t("general.sign_up") %></h6>
-
-			<%= form_for @o_user, :html => { :class => 'form-horizontal' } do |f| %>
-		    <div class="control-group">
-		      <%= f.label :first_name, :class => 'control-label' %>
-		      <div class="controls">
-		        <%= f.text_field :first_name, :class => 'text_field' %>
-		      </div>
-		    </div>		
-		    
-		    <div class="control-group">
-		      <%= f.label :email, :class => 'control-label' %>
-		      <div class="controls">
-		        <%= f.text_field :email, :class => 'text_field' %>
-		      </div>
-		    </div>
-				
-		    <div class="control-group">
-		      <%= f.label :password, :class => 'control-label' %>
-		      <div class="controls">
-		        <%= f.password_field :password, :class => 'text_field' %>
-		      </div>
-		    </div>
-		    
-				<%= f.submit 'Register', :class => 'btn btn-primary' %>		    	
-			<% end %>
-	</fieldset>
+<div class="popupBox">
+	<h2>Please sign in!</h2>
+	<%= form_for @user_session, :html => { :class => 'form-horizontal' } do |f| %>
+  	<div class="inputLabel">
+	    <label>Email ID</label>
+	    <%= f.text_field :email, :class => 'text_field' %>
+	    <div class="clearBoth"></div>
+    </div>
+    <div class="inputLabel">
+	    <label>Password</label>
+	    <%= f.password_field :password, :class => 'text_field' %>
+	    <div class="clearBoth"></div>
+    </div>
+    <div class="inputLabel">
+      <%= f.submit "Sign In" %>
+    </div>
+  <% end %>  
+  <h2>Create a Free Account!</h2>
+  <%= form_for @o_user, :html => { :class => 'form-horizontal' } do |f| %>
+    <div class="inputLabel">
+	    <label>First Name</label>
+	    <%= f.text_field :first_name, :class => 'text_field' %>
+    </div>
+    <div class="inputLabel">
+	    <label>Email ID</label>
+	    <%= f.text_field :email, :class => 'text_field' %>
+    </div>
+    <div class="inputLabel">
+	    <label>Password</label>
+	    <%= f.password_field :password, :class => 'text_field' %>
+    </div>
+    <div class="inputLabel">
+      <%= f.submit 'Register' %>
+    </div>
+  <% end %>  
+  
+  <div class="clearBoth"></div>
 </div>
-

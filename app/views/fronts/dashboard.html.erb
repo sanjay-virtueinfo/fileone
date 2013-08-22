@@ -4,14 +4,14 @@
 		<%= f.file_field :file_path, :class => 'file browseBtn' %>
 
 		<% if !@o_single.file_path.blank? %>
-			<% if @o_single.file_content_type.include? 'image' %>
+			<% if @o_single.file_content_type == 'image' %>
 				<%= image_tag @o_single.file_path_url(:logo) %><br />
 			<% else %>
 				<%= @o_single.name %><br />
 			<% end %>
 				<div class="socialBlockCloud"><%= link_to image_tag("cloud.png", :width => "91", :height => "91"), "#", :id => "save_on_cloud"%></div>
 		<% elsif @folder and @folder.file_path? %>
-			<% if @folder.file_content_type.include? 'image' %>
+			<% if @folder.file_content_type == 'image' %>
 				<%= image_tag @folder.file_path_url(:logo) %><br />
 			<% else %>
 				<%= @folder.name %><br />

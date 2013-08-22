@@ -2,6 +2,7 @@
 /* CSS Document */
 
 
+
 @font-face {
     font-family: 'cleanvertising_light';
     src: url('fonts/cleanvertising-light-webfont.eot');
@@ -11,8 +12,17 @@
          url('fonts/cleanvertising-light-webfont.svg#cleanvertising_light') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
+
+@font-face {
+    font-family: 'CalibriRegular';
+    src: url('fonts/calibri.eot');
+    src: url('fonts/calibri.eot') format('embedded-opentype'),
+         url('fonts/calibri.woff') format('woff'),
+         url('fonts/calibri.ttf') format('truetype'),
+         url('fonts/calibri.svg#CalibriRegular') format('svg');
+}
+
 .clearBoth { clear:both;}
 .floatLeft {float:left;}
 .floatRight {float:right;}
@@ -20,7 +30,7 @@ img { border:0; outline:0;}
 .marginRight {margin-right:10%; }
 .width50 { width:50%!important; }
 
-/*.container { margin:20px auto; width:1005px;  }*/
+
 .middlePart { padding:30px 0; }
 .middlePart h2 { margin:0; padding:0 0 5px 0; font-family:'cleanvertising_light'; font-size:30px; font-weight:normal; color:#0cae81;}
 
@@ -38,6 +48,27 @@ img { border:0; outline:0;}
 .profielView table tr td { border-bottom:#ddf4ed solid 1px; padding:6px 0 10px 0;}
 .iconImg { margin:0 10px -7px 0 }
 .titleIconImg { margin:0 0 -5px 10px; }
+
+/*Style for Popup Block*/
+.popupBox { margin:0 auto; padding:15px; width:520px; background:#fff; border:#0cae81 solid 15px; border-radius:5px; -web-border-radius:5px; -moz-border-radius:5px; font-size:12px; color:#565656;}
+.popupBox h2 { margin:0; padding:0 0 12px 142px; font-family:'CalibriRegular'; font-size:18px; font-weight:normal; color:#0cae81;}
+.popupBox p { margin:0; padding:0 0 10px 0; }
+.inputLabel { padding:0; margin:0 0 17px 0; float:left; width:100% }
+.inputLabel label { padding-right:30px; width:110px; float:left; line-height:27px; text-align:right; }
+.inputLabel input[type="text"], input[type="password"] { padding:0 5px; width:240px; float:left; background:#ddeee9; border:#ceeae2 solid 1px;  border-radius:5px; -web-border-radius:5px; -moz-border-radius:5px; height:27px; line-height:27px; }
+.inputLabel input[type="submit"] { margin:-10px 0 0 142px; padding:0 10px; background: #0cb788; /* Old browsers */
+background: -moz-linear-gradient(top,  #0cb788 0%, #0b9c73 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0cb788), color-stop(100%,#0b9c73)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #0cb788 0%,#0b9c73 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #0cb788 0%,#0b9c73 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #0cb788 0%,#0b9c73 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #0cb788 0%,#0b9c73 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0cb788', endColorstr='#0b9c73',GradientType=0 ); /* IE6-9 */
+ border:#10a57b solid 1px;  border-radius:7px; -web-border-radius:7px; -moz-border-radius:7px; height:27px; line-height:27px; color:#fff; font-size:13px; font-weight:bold; cursor:pointer; }
+
+
+
+
 
 
 
