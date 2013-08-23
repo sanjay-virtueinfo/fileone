@@ -72,6 +72,8 @@ gem 'debugger'
 #time difference
 gem 'time_diff'
 
+gem "fog"
+
 #authentication through omniauth
 gem 'omniauth'
 gem 'omniauth-facebook'

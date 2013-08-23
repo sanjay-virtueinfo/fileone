@@ -58,7 +58,7 @@
 
     <div class="control-group"><%= f.label :custom_signature, :class => 'control-label' %><div class="controls"><%= f.text_area :custom_signature, :class => 'text_field' %></div></div>		 
     <div class="control-group"><%= f.label :image, :class => 'control-label' %><div class="controls"><%= f.file_field :image, :class => 'text_field' %></div></div>
-    <div class="control-group"><div class="controls"><% if @o_single.image? %><%= image_tag @o_single.image_url(:logo) %><% end %></div></div>		 
+    <div class="control-group"><div class="controls"><% if @o_single.image? %><%= image_tag @o_single.image_url, :width => "100", :height => "100" %><% end %></div></div>		 
 		 
     <div class="control-group">
       <%= f.label :is_active, :class => 'control-label' %>

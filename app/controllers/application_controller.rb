@@ -26,7 +26,11 @@ class ApplicationController < ActionController::Base
   
   def require_admin
     unless session[:user_role] == SUPER_ADMIN
-      redirect_to :controller => "user_sessions", :action => "new"
+      if current_user
+        redirect_to dashboard_path
+      else
+        redirect_to :controller => "user_sessions", :action => "new"
+      end
     end
   end  
  

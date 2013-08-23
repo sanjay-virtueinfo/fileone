@@ -31,7 +31,7 @@ img { border:0; outline:0;}
 .width50 { width:50%!important; }
 
 
-.middlePart { padding:30px 0; }
+.middlePart { padding:5px 0; }
 .middlePart h2 { margin:0; padding:0 0 5px 0; font-family:'cleanvertising_light'; font-size:30px; font-weight:normal; color:#0cae81;}
 
 .leftBlock { width:40%; float:left; }
@@ -55,7 +55,8 @@ img { border:0; outline:0;}
 .popupBox p { margin:0; padding:0 0 10px 0; }
 .inputLabel { padding:0; margin:0 0 17px 0; float:left; width:100% }
 .inputLabel label { padding-right:30px; width:110px; float:left; line-height:27px; text-align:right; }
-.inputLabel input[type="text"], input[type="password"] { padding:0 5px; width:240px; float:left; background:#ddeee9; border:#ceeae2 solid 1px;  border-radius:5px; -web-border-radius:5px; -moz-border-radius:5px; height:27px; line-height:27px; }
+.inputLabel input[type="text"], input[type="password"] { padding:0 5px; float:left; background:#ddeee9; border:#ceeae2 solid 1px;  border-radius:5px; -web-border-radius:5px; -moz-border-radius:5px; height:27px; line-height:27px; }
+.inputLabel input[type="password"], input[type="text"] { padding:0 5px; float:left; background:#ddeee9; border:#ceeae2 solid 1px;  border-radius:5px; -web-border-radius:5px; -moz-border-radius:5px; height:27px; line-height:27px; }
 .inputLabel input[type="submit"] { margin:-10px 0 0 142px; padding:0 10px; background: #0cb788; /* Old browsers */
 background: -moz-linear-gradient(top,  #0cb788 0%, #0b9c73 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0cb788), color-stop(100%,#0b9c73)); /* Chrome,Safari4+ */
@@ -81,4 +82,5 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0cb788', end
 .text-message { float: left; margin: -25px 0 0 275px; font-weight: bold;}
 .spinner {float: right; margin: -50px 385px 0 0;}
 .mar20{ margin: 0 20px 0 5px;}
-.loginfom {background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #CECECD; border-radius: 10px 10px 10px 10px; box-shadow: 0 0 3px 3px rgba(206, 206, 205, 0.5); margin: 10px auto; padding: 20px; width: 600px; }
+.loginfom {background: none repeat scroll 0 0 #FFFFFF; border: 15px solid #0CAE81; border-radius: 10px 10px 10px 10px; box-shadow: 0 0 3px 3px rgba(206, 206, 205, 0.5); margin: 10px auto; padding: 20px; width: 700px; }
+.marTop9 {margin-top: 9px;}

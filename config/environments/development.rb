@@ -37,4 +37,6 @@ Fileone::Application.configure do
   MAIL_PORT = "587"
   MAIL_ADDRESS = "smtp.gmail.com"
   MAIL_DOMAIN = "gmail.com"  
+  
+  AMAZON_S3_BUCKET = "development_fileone"
 end

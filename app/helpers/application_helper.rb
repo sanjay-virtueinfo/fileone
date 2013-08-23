@@ -17,6 +17,14 @@ module ApplicationHelper
   
   def get_users
     [["Select", ""]] + User.active.all_users.collect {|r| [r.first_name + " " + r.last_name, r.id]}
-  end  
+  end
+  
+  def display_file(o_single)
+    if o_single.file_content_type.include? "image"
+      image_tag o_single.file_path
+    else
+      o_single.name
+    end
+  end    
   
 end
