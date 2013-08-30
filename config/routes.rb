@@ -25,6 +25,10 @@ QloudShare::Application.routes.draw do
   get '/sub_folders/:parent_folder_id' => 'folders#sub_folders', :as => :sub_folders
   
   get '/show_search_box/:toggle/:model/:pm' => 'fronts#show_search_box', :as => :show_search_box      
+
+
+  get '/shareviaemail' => 'share_email#index', :as => :shareviaemail
+  match '/shareviaemail/share' => 'share_email#create', :as => :share, via: [:post]
   
   root 'fronts#dashboard'
   # The priority is based upon order of creation: first created -> highest priority.

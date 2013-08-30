@@ -1,5 +1,6 @@
 class UserMailer < ActionMailer::Base
-  default :from => "'FileOne' <support@fileone.com>"
+  #default :from => "'FileOne' <support@fileone.com>"
+  default :from => "'FileOne' <nbarai77@gmail.com>"
 
   def registration_confirmation(email, opts)
     @username = opts[:username]
@@ -13,4 +14,8 @@ class UserMailer < ActionMailer::Base
     mail(:to => "#{email}", :subject => subject, :content_type => "text/html")
   end
   
+  def share_via_email(email, opts)
+    attachments.inline["Bottles.jpg"] = { :data => File.read(Rails.root.join("#{opts[:attached_file_path]}")), :mime_type => "image/png" }
+    mail(:to => "#{email}", :subject => t("general.file_share_via_email"),:body => opts[:body], :content_type => "multipart/mixed")
+  end
 end

@@ -24,7 +24,7 @@
   <div class="socialBlock">
   	<div class="socialBlockIcons">
   	  <h3>How would you like to share?</h3>
-  	  	<%= link_to (image_tag "msg_icon.png", :width => "37", :height => "37", :class => "marginRight30"), "#" %>
+  	  	<%= link_to( image_tag("msg_icon.png", :width => "37", :height => "37", :class => "marginRight30"), :shareviaemail, :class => "") %>
   	  	<%= link_to (image_tag "twitter_icon.png", :width => "37", :height => "37", :class => "marginRight30"), "#" %>
   	  	<%= link_to (image_tag "pintrest_icon.png", :width => "37", :height => "37", :class => "marginRight30"), "#" %>
   	  	<%= link_to (image_tag "facebook_icon.png", :width => "37", :height => "37", :class => "marginRight30"), "#" %>
@@ -98,6 +98,7 @@
 		$("#save_new").click(function () {
 			if ($("#folder_name").val() == "") {
 				alert("Please enter name");
+        return false;
 			}else {
 				$('.save_form_new').submit();
 			}

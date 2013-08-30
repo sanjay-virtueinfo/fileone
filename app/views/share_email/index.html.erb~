@@ -1,0 +1,2 @@
+<h1>Share via Email</h1>
+<%= rendar :partial => 'form' %>

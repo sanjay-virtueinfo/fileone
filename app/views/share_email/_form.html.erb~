@@ -1,0 +1,21 @@
+<%= form_for @o_share, url: {action: "create"}, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :folder_id, :value => (session[:parent_folder_id] ? session[:parent_folder_id] : nil) %>
+	<fieldset>
+    <div class="control-group">
+      <%= f.label :shared_by, :class => 'control-label' %><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.text_field :shared_by, :class => 'text_field' %>
+       	<% if @o_share.errors[:shared_by].any? %>
+        	<span class="text-error text-message"><%= @o_share.errors[:shared_by].first %></span>
+      	<% end %>        
+      </div>
+    </div>		
+		 
+    <div class="form-actions">
+      <%= f.submit "Share", :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', users_url, :class => 'btn' %>
+    </div>
+    
+  </fieldset>
+<% end %>
