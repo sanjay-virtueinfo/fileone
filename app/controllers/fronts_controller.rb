@@ -1,5 +1,6 @@
 class FrontsController < ApplicationController
 	require 'builder'
+	require 'open-uri'
   before_filter :require_user, :only => [:change_password]
   before_filter :set_header_menu_active
   skip_before_filter :verify_authenticity_token, :only => [:dashboard]
