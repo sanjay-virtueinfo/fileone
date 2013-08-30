@@ -1,4 +1,4 @@
-Fileone::Application.configure do
+QloudShare::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -89,5 +89,5 @@ Fileone::Application.configure do
   MAIL_ADDRESS = "smtp.gmail.com"
   MAIL_DOMAIN = "gmail.com"
   
-  AMAZON_S3_BUCKET = "production_fileone"  
+  AMAZON_S3_BUCKET = "qloudshare"  
 end

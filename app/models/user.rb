@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
   
   mount_uploader :image, ImageUploader
  
+  include SearchHandler
+  
 	def user_name
 		return self.first_name.blank? ? self.username : (self.first_name.to_s + " " + self.last_name.to_s)
 	end

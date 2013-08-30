@@ -58,7 +58,7 @@ class FoldersController < ApplicationController
           @o_single.name = @o_single.file_path.filename
           @o_single.is_folder = false
           @o_single.save
-          session[:folder_temp_id] = @o_single.id 
+          session[:folder_temp_id] = @o_single.id
         end
         
         r_url = session[:parent_folder_id] ? sub_folders_url(session[:parent_folder_id]) : folders_url

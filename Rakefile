@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Fileone::Application.load_tasks
+QloudShare::Application.load_tasks

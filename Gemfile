@@ -82,6 +82,9 @@ gem 'facebook_share'
 gem 'twitter'
 gem 'fb_graph'
 
+#aws-sdk
+gem 'aws-sdk'
+
 #gem "jquery-fileupload-rails"
 
 # Use ActiveModel has_secure_password

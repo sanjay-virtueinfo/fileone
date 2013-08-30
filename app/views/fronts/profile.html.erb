@@ -1,0 +1,49 @@
+<%= form_for @o_single, :url => profile_path, :html => { :class => 'form-horizontal' } do |f| %>
+<div class="loginfom">
+	<fieldset>
+		<legend></legend>
+			
+    <div class="control-group">
+      <div class="controls">
+				<div class="page-header">
+				  <h4><%= t("general.profile") %></h4>
+				</div>
+      </div>
+    </div>				
+			
+    <div class="control-group">
+      <%= f.label :first_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :first_name, :class => 'text_field' %>
+      </div>
+    </div>		
+		
+    <div class="control-group">
+      <%= f.label :last_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :last_name, :class => 'text_field' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :email, :class => 'control-label' %><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.text_field :email, :class => 'text_field' %>
+       	<% if @o_single.errors[:email].any? %>
+        	<span class="text-error text-message"><%= @o_single.errors[:email].first %></span>
+      	<% end %>        
+      </div>
+    </div>
+
+    <div class="control-group"><%= f.label :custom_signature, :class => 'control-label' %><div class="controls"><%= f.text_area :custom_signature, :class => 'text_field' %></div></div>		 
+    <div class="control-group"><%= f.label :image, :class => 'control-label' %><div class="controls"><%= f.file_field :image, :class => 'text_field' %></div></div>
+    <div class="control-group"><div class="controls"><% if @o_single.image? %><%= image_tag @o_single.image_url, :width => "100", :height => "100" %><% end %></div></div>
+     
+    <div class="form-actions">
+      <%= f.submit t("general.save"), :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', users_url, :class => 'btn' %>
+    </div>
+    
+  </fieldset>
+</div>  
+<% end %>

@@ -1,4 +1,4 @@
-Fileone::Application.configure do
+QloudShare::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -38,5 +38,5 @@ Fileone::Application.configure do
   MAIL_ADDRESS = "smtp.gmail.com"
   MAIL_DOMAIN = "gmail.com"  
   
-  AMAZON_S3_BUCKET = "development_fileone"
+  AMAZON_S3_BUCKET = "development_QloudShare"
 end

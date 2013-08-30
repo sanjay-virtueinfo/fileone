@@ -41,6 +41,10 @@ GEM
     authlogic (3.3.0)
       activerecord (>= 3.2)
       activesupport (>= 3.2)
+    aws-sdk (1.11.1)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     builder (3.1.4)
     carrierwave (0.9.0)
       activemodel (>= 3.2.0)
@@ -227,6 +231,7 @@ GEM
     uglifier (2.1.2)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    uuidtools (2.1.4)
     webget_ruby_secure_random (1.2.1)
     will_paginate (3.0.4)
 
@@ -235,6 +240,7 @@ PLATFORMS
 
 DEPENDENCIES
   authlogic
+  aws-sdk
   carrierwave
   coffee-rails (~> 4.0.0)
   debugger

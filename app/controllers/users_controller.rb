@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    @search_fields = ['first_name', 'last_name', 'email']
     @o_all = get_records(params[:user], params[:page])
   end
   
@@ -81,7 +82,7 @@ class UsersController < ApplicationController
     end
     
 	  def get_records(search, page)
-      user_query = User.scoped
+      user_query = User.search(search)
 	  	user_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
 	  end    
     

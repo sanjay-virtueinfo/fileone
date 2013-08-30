@@ -1,8 +1,17 @@
 <div class="loginfom">
-<% if @o_single %>
-  <%= @o_single.content.html_safe unless @o_single.content.blank? %>
-<% else %>
-  <%= t("general.page_not_found") %>
-<% end %>  
-
+	<fieldset>
+		<legend></legend>
+		<% if @o_single %>
+	    <div class="control-group">
+	      <div class="controls">
+					<div class="page-header">
+					  <h4><%= @o_single.name %></h4>
+					</div>
+	      </div>
+	    </div>
+			<%= @o_single.content.html_safe unless @o_single.content.blank? %>
+		<% else %>
+		  <h4><%= t("general.page_not_found") %></h4>
+		<% end %>  
+	</fieldset>
 </div>

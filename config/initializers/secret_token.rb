@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Fileone::Application.config.secret_key_base = 'cdabbc847b7faa6fc94331e573692a3f07859ef705746681812b845cf2038e13d3629bf1bea8f40796b9b37924606c68310a8c5ca97db54fd116b75935802632'
+QloudShare::Application.config.secret_key_base = 'cdabbc847b7faa6fc94331e573692a3f07859ef705746681812b845cf2038e13d3629bf1bea8f40796b9b37924606c68310a8c5ca97db54fd116b75935802632'

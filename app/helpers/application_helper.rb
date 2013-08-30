@@ -21,7 +21,7 @@ module ApplicationHelper
   
   def display_file(o_single)
     if o_single.file_content_type.include? "image"
-      image_tag o_single.file_path
+      image_tag o_single.file_path_url(:logo)
     else
       o_single.name
     end

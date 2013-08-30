@@ -14,13 +14,13 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  #storage :fog
+  #storage :file
+  storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "QloudShare"
   end
 
   process :set_content_type
@@ -51,9 +51,8 @@ class ImageUploader < CarrierWave::Uploader::Base
      process convert: 'png'
    end   
 =end
-   version :logo, :if => :image? do
-     process :resize_to_fit => [140, 36]
-     process convert: 'png'
+   version :logo do
+     process :resize_to_fit => [200, 50]
    end  
 
   # Add a white list of extensions which are allowed to be uploaded.

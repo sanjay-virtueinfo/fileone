@@ -1,4 +1,4 @@
-Fileone::Application.routes.draw do
+QloudShare::Application.routes.draw do
   
   resources :fronts
 
@@ -20,8 +20,11 @@ Fileone::Application.routes.draw do
   
   match '/forgot_password' => 'fronts#forgot_password', :as => :forgot_password, via: [:get, :post]
   match '/change_password' => 'fronts#change_password', :as => :change_password, via: [:get, :post, :patch]
+  match '/profile' => 'fronts#profile', :as => :profile, via: [:get, :post, :patch]
   
-  get '/sub_folders/:parent_folder_id' => 'folders#sub_folders', :as => :sub_folders      
+  get '/sub_folders/:parent_folder_id' => 'folders#sub_folders', :as => :sub_folders
+  
+  get '/show_search_box/:toggle/:model/:pm' => 'fronts#show_search_box', :as => :show_search_box      
   
   root 'fronts#dashboard'
   # The priority is based upon order of creation: first created -> highest priority.

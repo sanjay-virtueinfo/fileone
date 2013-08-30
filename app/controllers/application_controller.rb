@@ -25,13 +25,13 @@ class ApplicationController < ActionController::Base
   end
   
   def require_admin
-    unless session[:user_role] == SUPER_ADMIN
-      if current_user
-        redirect_to dashboard_path
-      else
-        redirect_to :controller => "user_sessions", :action => "new"
-      end
-    end
+    unless current_user
+      redirect_to :controller => "user_sessions", :action => "new"
+    else
+      unless is_admin?
+        redirect_to :controller => "fronts", :action => "dashboard"
+      end  
+    end  
   end  
  
   def authenticate_email(email)
@@ -59,5 +59,23 @@ class ApplicationController < ActionController::Base
   def is_user?
 	 session[:user_role] == USER
   end
+  
+  #save file on cloud
+  def save_file_on_cloud(folder)
+    
+    directory_file = Rails.public_path.to_s + folder.file_path.to_s
+    
+    secure_file_name = "QloudShare/" + folder.name.to_s
+    
+    s3 = AWS::S3.new.buckets[AMAZON_S3_BUCKET].objects[secure_file_name]
+    
+    s3.write(:file => directory_file, :acl => :public_read)
+    
+    File.delete(directory_file)
+    
+    folder.amazon_file_path = secure_file_name
+    
+    folder.save
+  end  
   
 end

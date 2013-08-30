@@ -1,5 +1,3 @@
-<div class="span2">&nbsp;</div>
-<div class="span4">
 <%= form_for @user_session, :html => { :class => 'form-horizontal' } do |f| %>
 
 <div class="loginfom">
@@ -8,8 +6,7 @@
   	
     <div class="control-group">
     	<div class="controls">
-    		<%#= image_tag "logo.png" %>
-    		<h4>Login</h4>
+    		<h4><%= t("general.login") %></h4>
 	    </div>	  
     </div>  	
 	  <% if @user_session.errors.any? %>
@@ -17,7 +14,7 @@
 	    	<div class="controls">
 	      	<% @user_session.errors.full_messages.each do |msg| %>
 	      		<% @msg_var = "general.#{msg.gsub(' ', "_")}" %>
-		      	<i class="text-error"><%= t(@msg_var) %></i>
+		      	<span class="text-error"><%= t(@msg_var) %></span>
 		    	<% end %>
 		    </div>	  
 	    </div>
@@ -45,5 +42,3 @@
   </fieldset>
 </div>     
 <% end %>
-</div>
-<div class="span5">&nbsp;</div>

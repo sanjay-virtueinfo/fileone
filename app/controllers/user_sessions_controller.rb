@@ -24,14 +24,16 @@ class UserSessionsController < ApplicationController
       if @user_session.save
 				session[:user_id] = current_user.id
 				session[:user_role] = current_user.role.role_type
-				
+				notice = t("general.login_successful")
 				if session[:folder_temp_id]
 				  folder = Folder.find(session[:folder_temp_id])
 				  folder.user_id = current_user.id
 				  folder.save
+				  #save_file_on_cloud(folder)
+				  notice = t("general.successfully_saved_on_cloud")
 				end
 				
-				format.html { redirect_to(dashboard_path, :notice => t("general.login_successful")) }
+				format.html { redirect_to(dashboard_path, :notice => notice) }
 				format.xml { render :xml => @user_session, :status => :created, :location => @user_session }
       else
         format.html { render :action => "new" }
@@ -92,8 +94,9 @@ class UserSessionsController < ApplicationController
   
   private
   
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit!
-    end  
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit!
+  end
+  
 end
