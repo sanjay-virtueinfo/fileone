@@ -51,7 +51,7 @@ class FoldersController < ApplicationController
     @o_single = Folder.new(folder_params)     
     respond_to do |format|
       if @o_single.save
-        
+        notice = t("general.successfully_created")
         if params[:folder] and params[:folder][:file_path]
           @o_single.file_size = @o_single.file_path.size.to_f          
           @o_single.file_content_type = params[:folder][:file_path].content_type
@@ -59,10 +59,11 @@ class FoldersController < ApplicationController
           @o_single.is_folder = false
           @o_single.save
           session[:folder_temp_id] = @o_single.id
+          notice = t("general.successfully_saved_on_cloud")
         end
         
         r_url = session[:parent_folder_id] ? sub_folders_url(session[:parent_folder_id]) : folders_url
-        format.html { redirect_to r_url, notice: t("general.successfully_created") }
+        format.html { redirect_to r_url, notice: notice }
         format.json { render action: 'show', status: :created, location: @o_single }
       else
         format.html { render action: 'new' }

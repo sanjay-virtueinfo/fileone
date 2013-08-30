@@ -5,6 +5,10 @@
 	
 		<%= f.file_field :file_path, :class => 'file browseBtn' %>
 		
+	  <span id="spinner" style="display: none;float: right;margin-right: 170px;">
+	    <%= image_tag "loading.gif" %>
+	  </span>		
+		
 		<div class="clearBoth"></div>
 
 		<% if !@o_single.file_path.blank? %>

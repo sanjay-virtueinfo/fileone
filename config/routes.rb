@@ -21,6 +21,7 @@ QloudShare::Application.routes.draw do
   match '/forgot_password' => 'fronts#forgot_password', :as => :forgot_password, via: [:get, :post]
   match '/change_password' => 'fronts#change_password', :as => :change_password, via: [:get, :post, :patch]
   match '/profile' => 'fronts#profile', :as => :profile, via: [:get, :post, :patch]
+  get '/download/:id' => 'fronts#download', :as => :download
   
   get '/sub_folders/:parent_folder_id' => 'folders#sub_folders', :as => :sub_folders
   

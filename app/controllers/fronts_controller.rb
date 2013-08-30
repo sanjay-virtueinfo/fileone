@@ -35,6 +35,20 @@ class FrontsController < ApplicationController
     @params_arr = params[:pm].split(',')
   end  
   
+  def download
+    file = Folder.find(params[:id])
+    if file and file.file_path
+      data = open(file.file_path.to_s)
+      send_data  data.read,
+                  :filename => file.name,
+                  :type => "application/force-download",
+                  :disposition => 'attachment'
+    else
+      flash[:notice] = t("general.file_does_not_exist")
+      redirect_to folders_path              
+    end                  
+  end
+  
   #forgot password
   def forgot_password
     @user = User.new
