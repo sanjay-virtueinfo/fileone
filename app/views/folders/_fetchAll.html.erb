@@ -4,6 +4,10 @@
 	    <%= f.hidden_field :folder_id, :value => (session[:parent_folder_id] ? session[:parent_folder_id] : nil) %>
 	    <%= f.hidden_field :user_id, :value => current_user.id %>
 	    <%= f.file_field :file_path, :class => 'text_field' %>
+	    
+	  <span id="spinner" style="display: none;float: right;margin-right: 170px;">
+	    <%= image_tag "loading.gif" %>
+	  </span>			    
 			
 			<div class="clearBoth">&nbsp;</div>
 			
@@ -55,9 +59,9 @@
       <tr>
         <td>
         	<% if o_row.is_folder %>
-        		<%= link_to o_row.name, sub_folders_path(o_row.id) %>
+        		<%= link_to image_tag("design_folder.png", :width => "22", :height => "17") + " " + o_row.name, sub_folders_path(o_row.id) %>
         	<% else %>
-        		<%= o_row.name %>
+        		<%= link_to o_row.name, download_path(o_row.id) %>
         	<% end %>	
         </td>
         <td><%= o_row.file_content_type %></td>
@@ -91,6 +95,7 @@
 				alert("Please choose file");
 				return;
 			}else {
+				$('#spinner').show();
 				$('.attachmentsUpload').submit();
 			}
 		});
