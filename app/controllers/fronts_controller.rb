@@ -1,7 +1,7 @@
 class FrontsController < ApplicationController
 	require 'builder'
 	require 'open-uri'
-  before_filter :require_user, :only => [:change_password]
+  before_filter :require_user, :only => [:change_password, :download, :usage, :profile]
   before_filter :set_header_menu_active
   skip_before_filter :verify_authenticity_token, :only => [:dashboard]
   
@@ -35,6 +35,11 @@ class FrontsController < ApplicationController
     @o_single = params[:model].constantize.new
     @params_arr = params[:pm].split(',')
   end  
+  
+  
+  def usage
+    
+  end
   
   def download
     file = Folder.find(params[:id])

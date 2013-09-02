@@ -1,0 +1,10 @@
+  <fieldset>
+    <legend></legend>
+    
+	    <div class="control-group">
+	    	<div class="controls">
+	    		<h4><%= t("general.usage") %></h4>
+	    		<%= current_user.get_total_used %> <%= t("general.used") %> | <%= current_user.get_free_usage %> <%= t("general.free") %>  
+		    </div>	  
+	    </div>      
+  </fieldset>

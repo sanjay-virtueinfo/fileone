@@ -26,9 +26,14 @@ class UserSessionsController < ApplicationController
 				session[:user_role] = current_user.role.role_type
 				notice = t("general.login_successful")
 				if session[:folder_temp_id]
+				  #set user
 				  folder = Folder.find(session[:folder_temp_id])
 				  folder.user_id = current_user.id
 				  folder.save
+				  
+				  #set usage
+				  current_user.set_total_usage(folder.file_size)
+				  
 				  #save_file_on_cloud(folder)
 				  notice = t("general.successfully_saved_on_cloud")
 				end

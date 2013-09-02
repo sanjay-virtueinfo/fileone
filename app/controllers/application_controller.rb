@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 	SUPER_ADMIN = "SuperAdmin"
 	USER = "User"
 
+
   private
 
   def current_user_session
@@ -59,6 +60,10 @@ class ApplicationController < ActionController::Base
   def is_user?
 	 session[:user_role] == USER
   end
+  
+  def user_usage?
+   current_user ? current_user.usage_used.to_f : 0
+  end  
   
   #save file on cloud
   def save_file_on_cloud(folder)

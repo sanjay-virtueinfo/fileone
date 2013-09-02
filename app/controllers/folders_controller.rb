@@ -68,6 +68,8 @@ class FoldersController < ApplicationController
           @o_single.name = @o_single.file_path.filename
           @o_single.is_folder = false
           @o_single.save
+          #set usage
+          current_user.set_total_usage(@o_single.file_size)
           session[:folder_temp_id] = @o_single.id
           notice = t("general.successfully_saved_on_cloud")
         end

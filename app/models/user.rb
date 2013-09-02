@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
 	
 	include ActionView::Helpers::TextHelper
+	include ActionView::Helpers::NumberHelper
+
+  FREE_USAGE = 5
+  BYTES_OF_GB = 1073741824
 	
   acts_as_authentic do |c|
     c.login_field = 'email'
@@ -60,6 +64,19 @@ class User < ActiveRecord::Base
     else
       shorten ? truncate(email, :omission => "..", :length => 20) : email
     end
-  end 
-  	
+  end
+  
+  def set_total_usage(file_size)
+    self.usage_used = self.usage_used.to_f + file_size.to_f
+    self.save    
+  end
+  
+  def get_total_used
+    number_to_human_size(self.usage_used.to_f)
+  end
+  
+  def get_free_usage
+    free_usage = ((FREE_USAGE.to_i * BYTES_OF_GB.to_i) - self.usage_used.to_i)
+    number_to_human_size(free_usage)
+  end
 end
