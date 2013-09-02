@@ -1,3 +1,16 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+	  $('.btn').click (function() {
+	    $("#spinner").show();
+	  });
+	  $('.nav-stacked a').click (function() {
+	    $("#spinner").show();
+	  });
+	  $('.navSpinner a').click (function() {
+	    $("#spinner").show();
+	  });	  
+	});
+</script>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
@@ -9,7 +22,7 @@
       <a class="brand" href="/dashboard">QloudShare</a>
       <div class="nav-collapse">
       	
-        <ul class="nav">
+        <ul class="nav navSpinner">
           <% if current_user %>
             <% if is_admin? %>
             	<li class=""><%= link_to t("general.users"), users_path %></li>

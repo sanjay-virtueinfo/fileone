@@ -117,6 +117,43 @@ class FrontsController < ApplicationController
     end
   end  
   
+  #contact_us
+  def contact_us
+    if params[:contact]
+      respond_to do |format|
+        @o_single = Contact.new(contact_params)
+        if @o_single.save
+          format.html { redirect_to contact_us_url, notice: t("general.successfully_sent_inquiry") }
+          format.json { head :no_content }
+        else
+          format.html { render action: 'contact_us' }
+          format.json { render json: @o_single.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      @o_single = Contact.new        
+    end
+  end
+  
+  #help
+  def help
+    @o_help_content = StaticPage.find_by(page_route: "help")
+    if params[:contact]
+      respond_to do |format|
+        @o_single = Contact.new(contact_params)
+        if @o_single.save
+          format.html { redirect_to help_url, notice: t("general.successfully_sent_inquiry") }
+          format.json { head :no_content }
+        else
+          format.html { render action: 'help' }
+          format.json { render json: @o_single.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      @o_single = Contact.new
+    end
+  end      
+  
 	#footer and other static pages
   def other
   	@o_single = StaticPage.where(page_route: params[:page_id]).first
@@ -132,6 +169,10 @@ class FrontsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user).permit!
+  end
+  
+  def contact_params
+    params.require(:contact).permit!
   end
   
   def folder_params

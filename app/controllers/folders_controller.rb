@@ -7,9 +7,9 @@ class FoldersController < ApplicationController
   # GET /folders.json
   def index
     session[:parent_folder_id] = nil
-    @o_all = current_user.folders.parent_folders
+    @o_all = current_user.folders.parent_folders.order("is_folder desc")
     @o_single = Folder.new
-    @folder = session[:folder_temp_id] ? (Folder.find(session[:folder_temp_id])) : nil     
+    @folder = session[:folder_temp_id] ? (Folder.find(session[:folder_temp_id])) : nil
   end
   
   def sub_folders
@@ -26,6 +26,16 @@ class FoldersController < ApplicationController
       end  
     else
       @o_all = current_user.folders.parent_folders
+    end
+    
+    @folder_tree = []
+    if session[:parent_folder_id]
+      fld = Folder.find(session[:parent_folder_id])
+      @folder_tree << fld.name
+      while fld.folder_id
+        @folder_tree << fld.name
+        fld = Folder.find(fld.folder_id)
+      end
     end
     
     render action: 'index'

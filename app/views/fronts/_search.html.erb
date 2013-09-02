@@ -1,3 +1,10 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+	  $('.btn').click (function() {
+	    $("#spinner").show();
+	  });
+	});
+</script>
 <%= form_for @o_single, :method => "get", :remote => true, :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
     <legend></legend>
@@ -7,27 +14,17 @@
 	      <%= f.label p.capitalize, :class => 'control-label' %>
 	      <div class="controls">
 	      	<% model_name = params[:model].downcase %>
-	        <%= f.text_field p, :value => (session[model_name][p] unless session[model_name].nil?), :class => 'text_field' %>
+	        <%= f.text_field p, :value => "", :class => 'text_field' %>
 	      </div>
 	    </div>
   	<% end %> 
    
     <div class="controls">
       <%= f.submit t("general.search"), :class => 'btn btn-primary', :id => 'search_button_id' %>
+      <input type="reset" value="<%= t("general.reset") %>" class="btn btn-primary"/>
       <span data-no-turbolink><%= link_to 'Cancel', show_search_box_path(false, params[:model], true), :class => 'btn', :remote => true %></span>
-		  <span id="spinner" style="display: none;">
-		    <%= image_tag "loading.gif" %>
-		  </span>
     </div>
     
   </fieldset>
      
 <% end %>
-
-<script type="text/javascript">
-$(document).ready(function() {
-  $('#search_button_id').click (function() {
-    $("#spinner").show();
-  });  
-});
-</script>

@@ -1,28 +1,119 @@
 <div class="leftBlock marginRight">
+
+    <div class="control-group textColorLeft">
+			<label class = 'control-label'>
+				<%= image_tag("bullet1.png") %>&nbsp;&nbsp;
+				<%= t("general.upload_file_you_want_to_share") %>
+			</label>	      
+      <div class="controls">
+      </div>
+    </div>
+    <div class="clearBoth">&nbsp;</div>
+    
+    <div class="control-group textColorLeft">
+			<label class = 'control-label'>
+				<%= image_tag("bullet2.png") %>&nbsp;&nbsp;
+				<%= t("general.choose_how_you_want_to_share_it") %>
+			</label>      
+      <div class="controls">
+      </div>
+    </div>    
+
+		<div class="clearBoth">&nbsp;</div>
+		
 	<%= form_for @o_single, :url => dashboard_path, :remote => true, :method => "post", :html => { :class => 'attachmentsUpload' } do |f| %>
 	
-		<h2>Locate File</h2>
+		<h2><%= t("general.simple_as_that") %></h2>
+		
+		<div class="clearBoth">&nbsp;</div>
 	
 		<%= f.file_field :file_path, :class => 'file browseBtn' %>
-		
-	  <span id="spinner" style="display: none;float: right;margin-right: 170px;">
-	    <%= image_tag "loading.gif" %>
-	  </span>		
-		
+
 		<div class="clearBoth"></div>
 
 		<% if !@o_single.file_path.blank? %>
 				<%= display_file(@o_single) %>
 				<div class="clearBoth">&nbsp;</div>
-				<div class="socialBlockCloud"><%= link_to image_tag("cloud.png", :width => "91", :height => "91"), "#", :id => "save_on_cloud"%></div>
+				
+			  <div class="socialBlock">
+			  	<div class="socialBlockIcons">
+			  	  <h3>How would you like to share?</h3>
+			  	  	<%= link_to (image_tag "msg_icon.png", :width => "37", :height => "37", :class => "marginRight30", :id => "save_on_cloud1"), "#" %>&nbsp;
+			  	  	<%= link_to (image_tag "twitter_icon.png", :width => "37", :height => "37", :class => "marginRight30", :id => "save_on_cloud2"), "#" %>&nbsp;
+			  	  	<%= link_to (image_tag "pintrest_icon.png", :width => "37", :height => "37", :class => "marginRight30", :id => "save_on_cloud3"), "#" %>&nbsp;
+			  	  	<%= link_to (image_tag "facebook_icon.png", :width => "37", :height => "37", :class => "marginRight30", :id => "save_on_cloud4"), "#" %>&nbsp;
+			  	</div>
+			  	<div class="socialBlockCloud"><%= link_to image_tag("cloud.png", :width => "91", :height => "91"), "#", :id => "save_on_cloud"%></div>
+			  	<div class="clearBoth"></div>
+			  </div>				
+				
+				
+				
 		<% elsif @folder and @folder.file_path? %>
 			<%= display_file(@folder) %>
 			<div class="clearBoth">&nbsp;</div>
-			<div class="socialBlockCloud"><%= link_to image_tag("cloud.png", :width => "91", :height => "91"), "#", :id => "save_on_cloud"%></div>
+			
+			  <div class="socialBlock">
+			  	<div class="socialBlockIcons">
+			  	  <h3>How would you like to share?</h3>
+			  	  	<%= link_to (image_tag "msg_icon.png", :width => "37", :height => "37", :class => "marginRight30", :id => "save_on_cloud1"), "#" %>&nbsp;
+			  	  	<%= link_to (image_tag "twitter_icon.png", :width => "37", :height => "37", :class => "marginRight30", :id => "save_on_cloud2"), "#" %>&nbsp;
+			  	  	<%= link_to (image_tag "pintrest_icon.png", :width => "37", :height => "37", :class => "marginRight30", :id => "save_on_cloud3"), "#" %>&nbsp;
+			  	  	<%= link_to (image_tag "facebook_icon.png", :width => "37", :height => "37", :class => "marginRight30", :id => "save_on_cloud4"), "#" %>&nbsp;
+			  	</div>
+			  	<div class="socialBlockCloud"><%= link_to image_tag("cloud.png", :width => "91", :height => "91"), "#", :id => "save_on_cloud" %></div>
+			  	
+			  	<div class="clearBoth"></div>
+			  </div>				
 		<% end %>	
 	<% end %>		
 	
 </div>	
+<div class="rightBlock width50">
+	<div class="profielView">
+	
+	<div class="home_more_content" style="display: visible;"> 
+		<div class="textColorCenter">
+			<p><%= t("general.access_file_anywhere") %></p>
+			<p><%= t("general.upload_edit_share_more") %></p>
+		</div>
+		<%= image_tag("256-bit_map.png", :width => "560", :height => "300") %>
+		<div class="textColorCenter">
+			<h2><%= t("general.your_files") %></h2>
+			<p><%= link_to t("general.learn_more") + " " + image_tag("green-arrow.png"), "#", :id => "learn_more" %></p>
+		</div>
+	</div>	
+	<div class="learn_more_content" style="display: none;">
+		<h3><%= t("general.why_fileone") %></h3>
+    <div class="control-group textColorLeft">
+			<label class = 'control-label'>
+				<%= image_tag("check_icon.png") %>&nbsp;&nbsp;
+				<%= t("general.learn_more1") %>
+			</label>
+			<label class = 'control-label'>
+				<%= image_tag("check_icon.png") %>&nbsp;&nbsp;
+				<%= t("general.learn_more2") %>
+			</label>
+			<label class = 'control-label'>
+				<%= image_tag("check_icon.png") %>&nbsp;&nbsp;
+				<%= t("general.learn_more3") %>
+			</label>	      
+			<label class = 'control-label'>
+				<%= image_tag("check_icon.png") %>&nbsp;&nbsp;
+				<%= t("general.learn_more4") %>
+			</label>	      
+			<label class = 'control-label'>
+				<%= image_tag("check_icon.png") %>&nbsp;&nbsp;
+				<%= t("general.learn_more5") %>
+			</label>	      													      
+      <div class="controls">
+      </div>
+    </div>		
+	</div>
+			
+</div>
+</div>	
+
 
 <div id="myModal" class="reveal-modal">
 	<%= render 'signin_form' %>
@@ -30,9 +121,15 @@
 
 <script>
 	$(function() {
-		$("#save_on_cloud").click(function () {
+		$("#save_on_cloud, #save_on_cloud1, #save_on_cloud2, #save_on_cloud3, #save_on_cloud4").click(function () {
 			$('#myModal').reveal();
-		});	
+		});
+		
+		$("#learn_more").click(function () {
+			$('.home_more_content').hide();
+			$('.learn_more_content').show();
+		});		
+		
 		$(".attachmentsUpload input.file").change(function () {
 		    if ($(".attachmentsUpload input.file").val() == "") {return;}
 		    $('#spinner').show();

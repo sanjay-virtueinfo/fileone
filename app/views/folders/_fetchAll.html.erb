@@ -1,45 +1,55 @@
 <div class="leftBlock marginRight">
 	<%= form_for @o_single, :html => { :class => 'attachmentsUpload' } do |f| %>
-		<h2>Locate File</h2>
-	    <%= f.hidden_field :folder_id, :value => (session[:parent_folder_id] ? session[:parent_folder_id] : nil) %>
-	    <%= f.hidden_field :user_id, :value => current_user.id %>
-	    <%= f.file_field :file_path, :class => 'text_field' %>
-	    
-	  <span id="spinner" style="display: none;float: right;margin-right: 170px;">
-	    <%= image_tag "loading.gif" %>
-	  </span>			    
-			
-			<div class="clearBoth">&nbsp;</div>
-			
-	    <div class="socialBlockCloud"><%= link_to image_tag("cloud.png", :width => "91", :height => "91"), "#", :id => "save_on_cloud"%></div>
+		<table>
+			<tr>
+				<td>
+					<h2>Locate File</h2>
+			    <%= f.hidden_field :folder_id, :value => (session[:parent_folder_id] ? session[:parent_folder_id] : nil) %>
+			    <%= f.hidden_field :user_id, :value => current_user.id %>
+			    <%= f.file_field :file_path, :class => 'text_field' %>
+			 	</td>
+			 	<td>&nbsp;&nbsp;</td>   
+		    <td>
+					<div class="socialBlock">		
+			    	<div class="socialBlockCloud">
+			    		<%= link_to image_tag("cloud.png", :width => "91", :height => "91"), "#", :id => "save_on_cloud"%>
+			    	</div>
+			    </div>
+			  </td>  
+			 </tr>  
+		</table>    	
 	<% end %>
 	
 	<div class="clearBoth">&nbsp;</div>
 	    
 	<% if @folder %>
 		<% if @folder.file_content_type.include? 'image' %>
-			<%= image_tag @folder.file_path, :width => "100", :height => "100" %><br />
+			<%= image_tag @folder.file_path, :width => "150", :height => "" %><br />
 		<% else %>
 			<%= @folder.name %><br />
 		<% end %>
 	<% end %>	
 	
-		
-  <div class="socialBlock">
-  	<div class="socialBlockIcons">
-  	  <h3>How would you like to share?</h3>
-  	  	<%= link_to (image_tag "msg_icon.png", :width => "37", :height => "37", :class => "marginRight30"), "#" %>
-  	  	<%= link_to (image_tag "twitter_icon.png", :width => "37", :height => "37", :class => "marginRight30"), "#" %>
-  	  	<%= link_to (image_tag "pintrest_icon.png", :width => "37", :height => "37", :class => "marginRight30"), "#" %>
-  	  	<%= link_to (image_tag "facebook_icon.png", :width => "37", :height => "37", :class => "marginRight30"), "#" %>
-  	</div>
-  	<div class="clearBoth"></div>
-  </div>		
+	<% if session[:folder_temp_id] %>
+	  <div class="socialBlock">
+	  	<div class="socialBlockIcons">
+	  	  <h3>How would you like to share?</h3>
+	  	  	<%= link_to (image_tag "msg_icon.png", :width => "37", :height => "37", :class => "marginRight30"), "#" %>
+	  	  	<%= link_to (image_tag "twitter_icon.png", :width => "37", :height => "37", :class => "marginRight30"), "#" %>
+	  	  	<%= link_to (image_tag "pintrest_icon.png", :width => "37", :height => "37", :class => "marginRight30"), "#" %>
+	  	  	<%= link_to (image_tag "facebook_icon.png", :width => "37", :height => "37", :class => "marginRight30"), "#" %>
+	  	</div>
+	  	<div class="clearBoth"></div>
+	  </div>
+	<% end %>  		
 </div>
 
 
 <div class="rightBlock width50">
 	<div class="profielView">
+	<% if @folder_tree %>
+		<%= image_tag("design_folder.png", :width => "22", :height => "17") %>&nbsp;&nbsp;<%= @folder_tree.join(" -> ") %>
+	<% end %>
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td width="45%" class="darkBorder"><span>Name<%= link_to image_tag("add_folder.png", :width => "22"), "#", :class => 'titleIconImg', :id => "folder_new" %></span></td>
@@ -59,7 +69,7 @@
       <tr>
         <td>
         	<% if o_row.is_folder %>
-        		<%= link_to image_tag("design_folder.png", :width => "22", :height => "17") + " " + o_row.name, sub_folders_path(o_row.id) %>
+        		<%= link_to image_tag("design_folder.png", :width => "22", :height => "17"), sub_folders_path(o_row.id) %>&nbsp;&nbsp;<%= o_row.name %>
         	<% else %>
         		<%= link_to o_row.name, download_path(o_row.id) %>
         	<% end %>	

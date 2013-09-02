@@ -1,0 +1,64 @@
+<div class="leftBlock marginRight">
+	<h4><%= t("general.help") %></h4>
+	
+    <div class="control-group">
+    	<div class="controls">
+    		<% if @o_help_content %>
+    			<%= @o_help_content.content %>
+    		<% end %>
+	    </div>	  
+    </div> 	
+	
+</div>
+<div class="rightBlock width50">
+	<div class="profielView">
+	<%= form_for @o_single, :url => help_path, :html => { :class => 'form-horizontal' } do |f| %>
+	<div class="loginfom">
+	  <fieldset>
+	    <legend></legend>
+	
+		    <div class="control-group">
+		    	<div class="controls">
+		    		<h4><%= t("general.got_a_question") %></h4>
+			    </div>	  
+		    </div> 
+			
+			<%= f.hidden_field :is_contact_us, :value => false %>
+	    <div class="control-group">
+	      <label class = 'control-label'><%= t("general.your_name") %></label><span class="redStart">*</span>
+	      <div class="controls">
+	        <%= f.text_field :name, :class => 'text_field' %>
+	       	<% if @o_single.errors[:name].any? %>
+	        	<span class="text-error text-message"><%= @o_single.errors[:name].first %></span>
+	      	<% end %>        
+	      </div>
+	    </div>
+	    
+	    <div class="control-group">
+	      <label class = 'control-label'><%= t("general.your_email") %></label><span class="redStart">*</span>
+	      <div class="controls">
+	        <%= f.text_field :email, :class => 'text_field' %>
+	       	<% if @o_single.errors[:email].any? %>
+	        	<span class="text-error text-message"><%= @o_single.errors[:email].first %></span>
+	      	<% end %>                
+	      </div>
+	    </div>
+	    	
+	    <div class="control-group">
+	    	<div class="controls">
+	    	<%= t("general.type_your_msg_here") %>
+	    	<div class="clearBoth"></div>    	
+	    	<%= f.text_area :message, :class => 'text_field textAreaSmall' %>
+	    	</div>
+	    </div>
+	
+	
+	    <div class="form-actions">
+	      <%= f.submit t("general.send"), :class => 'btn btn-primary' %>
+	    </div>
+	    
+	  </fieldset>
+	</div>     
+	<% end %>
+</div>
+</div>	
